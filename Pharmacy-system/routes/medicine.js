@@ -25,7 +25,7 @@ router.get("/", async(req,res)=>{
 
 const medicines = await Medicine.find()
 
-res.send(Medicine)
+res.send(medicines)
 })
 
 // get medicine by id

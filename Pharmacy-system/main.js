@@ -4,23 +4,23 @@ const mongoose = require("mongoose");
 
 const bodyParser = require("body-parser");
 
-// require("dotenv").config()
+require("dotenv").config()
 
 const app = express();
 
 app.use(bodyParser.json());
 
-mongoose.connect('mongodb://localhost:27017/PharmacyDb',{
+mongoose.connect(process.env.MONGO_URI,{
 
-}).then(()=>console.log("MongoDb connected")).catch((error) => console.error("MongoDb Cnnection Error", error));
+}).then(()=>console.log("MongoDb connected")).catch((error) => console.error("MongoDb Connection Error", error));
 
 const medicineRoutes = require("./routes/medicine")
 const  pharmacistRoutes = require("./routes/pharmacist")
-const  pharmacystoreRoutes = require("./routes/pharmacystore")
+const  pharmacyStoreRoutes = require("./routes/pharmacyStore")
 
 app.use('/medicines',medicineRoutes)
 app.use('/pharmacists',pharmacistRoutes)
-app.use('/pharmacystores',pharmacystoreRoutes)
+app.use('/pharmacyStores',pharmacyStoreRoutes)
 
 const Port = process.env.PORT || 5000
 
